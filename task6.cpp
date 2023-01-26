@@ -1,26 +1,31 @@
 #include<iostream>
 using namespace std;
 main() {
-    int period, patients, treated, remain, untreated, sum = 0;
-    cout << "Enter the period: ";
+    int period, patients;
+    int untreated = 0;
+    int treated = 0;
+    int doctors = 7;
+    cout << "Enter the days: ";
     cin >> period;
     for (int n = 1;n <= period;n++) {
-        cout << "Enter the patient: ";
+        cout << "Enter the patients: ";
         cin >> patients;
-        treated = 7;
         if (n % 3 == 0) {
-            if (untreated > treated) {
-                remain = patients - 14;
+            if (treated < untreated) {
+                doctors = doctors + 1;
             }
         }
-        if (untreated > 7) {
-            remain = patients - 1;
+        if (patients <= doctors) {
+            treated = treated + patients;
         }
-        untreated = patients;
-        sum = sum + untreated;
+        else if (patients > doctors) {
+            treated = treated + doctors;
+            untreated = (patients - doctors) + untreated;
+        }
     }
-    treated = sum - remain;
-
-
-    cout << "Treated patients: " << treated << endl << "Untreated patients: " << untreated;
+    cout << "Treated Patients: " << treated << endl;
+    cout << "Untreated Patients: " << untreated << endl;
+    if (doctors > 7) {
+        cout << "More doctors needed";
+    }
 }
